@@ -1,5 +1,12 @@
 package com.chargepoint.rating.entity;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.chargepoint.rating.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.chargepoint.rating.model.BaseModel;
 
 @Getter
 @Setter
@@ -35,6 +36,7 @@ public class Station extends BaseModel {
 	private String pincode;
 
 	@OneToMany(mappedBy = "station", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference("station-ratings")
 	private List<Rating> ratings = new ArrayList<>();
 
 	@PrePersist

@@ -87,7 +87,7 @@ public class RatingServiceImpl implements RatingService {
             Rating rating = existingRating.get();
             rating.setStarRating(updatedRating.getStarRating());
             rating.setTextReview(updatedRating.getTextReview());
-            rating.setUpdatedBy("Admin");
+            rating.setUpdatedBy(updatedRating.getUserId());
             //rating.setUpdatedDate(LocalDateTime.now());
             return ratingRepository.save(rating);
         }
@@ -107,10 +107,26 @@ public class RatingServiceImpl implements RatingService {
         return ratingRepository.findAll();
     }
 
+	/**
+	 * 
+	 */
     @Override
-    public List<Rating> getRatingByNumberOfStars(int stars) {
-        return ratingRepository.findByStarRating(stars);
+    public List<Rating> getRatingByNumberOfStars(int starRating) {
+        return ratingRepository.findByStarRating(starRating);
     }
+
+    /**
+     * 
+     */
+	@Override
+	public double getAverageRatingForStation(Long stationId) {
+		List<Rating> ratings = ratingRepository.findByStationId(stationId);
+	    if (ratings.isEmpty()) {
+	        return 0.0;
+	    }
+	    double total = ratings.stream().mapToInt(Rating::getStarRating).sum();
+	    return total / ratings.size();
+	}
 
 
 }

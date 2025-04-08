@@ -48,6 +48,7 @@ public class RatingController {
 			@ApiResponse(responseCode = "404", description = "Rating not found"),
 			@ApiResponse(responseCode = "403", description = "Unauthorized") })
 	public ResponseEntity<Rating> getRating(@PathVariable Long id) {
+		
 		return ratingService.getRating(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
@@ -56,9 +57,9 @@ public class RatingController {
 		return ratingService.getAllRatings();
 	}
 
-	@GetMapping("/stars")
-	public List<Rating> getRatingByNumberOfStars(@RequestParam int stars) {
-		return ratingService.getRatingByNumberOfStars(stars);
+	@GetMapping("/stars/{starRating}")
+	public List<Rating> getRatingByNumberOfStars(@PathVariable int starRating) {
+		return ratingService.getRatingByNumberOfStars(starRating);
 	}
 
 	@GetMapping("/station/{stationId}")
@@ -70,6 +71,18 @@ public class RatingController {
 	public ResponseEntity<List<Rating>> getRatingsByStation(@PathVariable Long stationId) {
 		List<Rating> ratings = ratingService.getRatingsByStation(stationId);
 		return ResponseEntity.ok(ratings);
+	}
+	
+	@GetMapping("/station/{stationId}/average")
+	@Operation(summary = "Get average star rating for a station")
+	@ApiResponses({
+	    @ApiResponse(responseCode = "200", description = "Average rating retrieved"),
+	    @ApiResponse(responseCode = "404", description = "No ratings found for station"),
+	    @ApiResponse(responseCode = "403", description = "Unauthorized")
+	})
+	public ResponseEntity<Double> getAverageRating(@PathVariable Long stationId) {
+	    double avgRating = ratingService.getAverageRatingForStation(stationId);
+	    return ResponseEntity.ok(avgRating);
 	}
 
 //	@GetMapping("/station/{stationId}/moderated")

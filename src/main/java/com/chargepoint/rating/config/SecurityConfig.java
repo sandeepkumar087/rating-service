@@ -41,14 +41,31 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    /***
+     * 
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()  // Allow registration & login
+//                .requestMatchers(
+//                		"/swagger-ui/**",
+//                        "/swagger-ui.html",
+//                        "/v3/api-docs/**",
+//                        "/v3/api-docs",
+//                        "/webjars/**",
+//                        "/favicon.ico",            // ✅ Allow Favicon
+//                        "/swagger-ui/favicon-32x32.png", // ✅ Allow Specific Favicon
+//                        "/swagger-resources/**"     // ✅ Required for Swagger Static Files
+//                    ).permitAll()
+                .requestMatchers("/api/auth/**").permitAll()// Allow registration & login
                 .requestMatchers("/api/ratings/**").authenticated() // Secure rating endpoints
                 .requestMatchers("/api/stations/**").authenticated()// Secure station endpoints
+                .anyRequest().authenticated()
             )
 //            .authorizeHttpRequests(auth -> auth
 //                    .requestMatchers("/user/**", "/mobileUser/**", "/user-legacy-sync/**", "/v3/api-docs/**").permitAll()
@@ -76,54 +93,3 @@ public class SecurityConfig {
         return new SecureRandom();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.web.SecurityFilterChain;
-//
-//@Configuration
-//@EnableWebSecurity
-//@EnableMethodSecurity
-//public class SecurityConfig {
-//
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//            .authorizeHttpRequests(authorize -> authorize
-//                .requestMatchers("/api/ratings/**").authenticated()
-//                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-//                .anyRequest().permitAll()
-//            )
-//            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
-//        return http.build();
-//    }
-//}

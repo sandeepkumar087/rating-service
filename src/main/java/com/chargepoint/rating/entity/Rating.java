@@ -1,6 +1,8 @@
 package com.chargepoint.rating.entity;
 
 import com.chargepoint.rating.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +36,8 @@ public class Rating extends BaseModel {
 	
 	@ManyToOne
     @JoinColumn(name = "station_id", nullable = false) // Foreign key reference to Station
+	@JsonBackReference("station-ratings") // Use the same reference name as in `@JsonManagedReference`
+	@JsonIgnore
     private Station station;
 
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.chargepoint.rating.entity.LoginUser;
 import com.chargepoint.rating.entity.UserPasswordHistory;
 import com.chargepoint.rating.model.LoginRequest;
+import com.chargepoint.rating.model.LoginResponse;
 import com.chargepoint.rating.model.UserRegistration;
 import com.chargepoint.rating.repository.LoginUserRepository;
 import com.chargepoint.rating.service.AuthService;
@@ -34,33 +35,31 @@ public class LoginUserServiceImpl implements AuthService{
 
     @Value("${jwt.secret-key}")
     private String secretKey;
+    private final long EXPIRATION_TIME = 1000 * 60 * 60; // 10 hours
 
 
 	@Override
-	public String authenticate(LoginRequest request) {
+	public LoginResponse authenticate(LoginRequest request) {
 		LoginUser user = loginUserRepository.findByUserName(request.getUserName());
         if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid username or password");
         }
-        return generateToken(user);
+        LoginResponse loginResponse= new LoginResponse();
+        String session=generateToken(user);
+        loginResponse.setSession(session);
+        loginResponse.setUsername(user.getUserName());
+        return loginResponse;
 	}
 	
     
 
     @SuppressWarnings("deprecation")
 	private String generateToken(LoginUser user) {
-//        return Jwts.builder()
-//                .setSubject(user.getUserName())
-//                .claim("name", user.getFullName())
-//                .claim("type", user.getRole())
-//                .setIssuedAt(new Date())
-//                .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
-//                .signWith(SignatureAlgorithm.HS256, secretKey)
-//                .compact();
     	return Jwts.builder()
                 .setSubject(user.getUserName())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1-hour expiry
+                //.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1-hour expiry
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }

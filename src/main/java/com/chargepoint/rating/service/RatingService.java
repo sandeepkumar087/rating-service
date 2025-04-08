@@ -14,6 +14,7 @@ public interface RatingService {
 	public List<Rating> getRatingsByStation(Long stationId);
 
 	//public List<Rating> getModeratedRatingsByStation(Long stationId, boolean moderated);
+	double getAverageRatingForStation(Long stationId);
 
 	public Rating moderateRating(Long id, boolean approved);
 
@@ -25,6 +26,6 @@ public interface RatingService {
 
 	List<Rating> getAllRatings();
 
-	List<Rating> getRatingByNumberOfStars(int stars);
+	List<Rating> getRatingByNumberOfStars(int starRating);
 
 }
