@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.chargepoint.rating.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -37,6 +38,7 @@ public class Station extends BaseModel {
 
 	@OneToMany(mappedBy = "station", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference("station-ratings")
+	@JsonIgnore
 	private List<Rating> ratings = new ArrayList<>();
 
 	@PrePersist
