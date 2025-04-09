@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="E:\chargepoint_workspace\codebase-git\rating-service"/>
 			<item value="C:\Users\Sandeep\OneDrive\Desktop\chargepoint\station-rating"/>
 		</list>
 		<list key="projectNameTemplate">

@@ -2,7 +2,7 @@ spring:
   profile:
     active: dev  # Default profile
   application:
-    name: station-rating-service
+    name: station-rating
   datasource:
     url: jdbc:postgresql://localhost:5432/ratings_db?currentSchema=public
     username: postgres

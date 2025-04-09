@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "1f408b11-ae02-4994-944b-2e1f0048348f",
+		"name": "chargePoint-rollout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2121502",
+		"_collection_link": "https://orange-water-951509.postman.co/workspace/New-Team-Workspace~4b2f4983-1b57-40e4-927d-98bcfdd0012f/collection/2121502-1f408b11-ae02-4994-944b-2e1f0048348f?action=share&source=collection_link&creator=2121502"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"sksandeep\",\r\n    \"password\": \"password123\",\r\n    \"email\": \"sandeepkumar.bharti@hcltech.com\",\r\n    \"fullName\": \"Sandeep Kumar\",\r\n    \"mobileNo\": \"9015832479\",\r\n    \"createdBy\": \"Sandeep\",\r\n    \"createdDate\": \"05-02-2025\",\r\n    \"updatedBy\": \"ADMIN\",\r\n    \"updatedDate\": \"05-02-2025\",\r\n    \"roles\": [\r\n        \"ADMIN\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/auth/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"auth",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userRegistration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"sksandeep\",\r\n    \"password\": \"password123\",\r\n    \"email\": \"sandeepkumar.bharti@hcltech.com\",\r\n    \"fullName\": \"Sandeep Kumar\",\r\n    \"mobileNo\": \"9015832479\",\r\n    \"role\": \"ADMIN\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/auth/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"auth",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9003/api/auth/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"sksandeep\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rollout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "rollout Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "rollout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJza3NhbmRlZXAiLCJpYXQiOjE3NDM2NjA3MTUsImV4cCI6MTc0MzY2NDMxNX0.zu7Btmv64trZVAOgt5_pAKHhQsJSOvmNQ-EyHVpnaew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"createdDate\": \"02-05-2025\",\r\n    \"createdBy\": \"Admin\",\r\n    \"updatedDate\": \"02-05-2025\",\r\n    \"updatedBy\": \"Admin\",\r\n    \"stationId\": \"ST003\",\r\n    \"userId\": \"UR003\",\r\n    \"starRating\": 5,\r\n    \"textReview\": \"Good Station\",\r\n    \"moderated\": true,\r\n    \"reviewPoints\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/ratings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rollout Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJza3NhbmRlZXAiLCJpYXQiOjE3NDM2NjA3MTUsImV4cCI6MTc0MzY2NDMxNX0.zu7Btmv64trZVAOgt5_pAKHhQsJSOvmNQ-EyHVpnaew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"createdDate\": \"02-05-2025\",\r\n    \"createdBy\": \"Admin\",\r\n    \"updatedDate\": \"02-05-2025\",\r\n    \"updatedBy\": \"Admin\",\r\n    \"stationId\": \"ST003\",\r\n    \"userId\": \"UR003\",\r\n    \"starRating\": 5,\r\n    \"textReview\": \"Good Station\",\r\n    \"moderated\": true,\r\n    \"reviewPoints\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/ratings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9003/api/stations/createStations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJza3NhbmRlZXAiLCJpYXQiOjE3NDM2NzI2MTgsImV4cCI6MTc0MzY3NjIxOH0.l_bdZuNHkGJ8_oDd9lmCchKkxi4DcT5HyygcN_Ljf-g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationName\": \"Central Charging Hub\",\r\n    \"areaName\": \"Downtown\",\r\n    \"pincode\": \"560001\",\r\n    \"createdBy\":\"ADMIN\",\r\n    \"createdDate\" \"05-04-2025\",\r\n    \"ratings\": [\r\n        {\r\n            \"starRating\": 5,\r\n            \"reviewPoints\": 100,\r\n            \"textReview\": \"Excellent service!\",\r\n            \"userId\": \"ADMIN\"\r\n        },\r\n        {\r\n            \"starRating\": 4,\r\n            \"reviewPoints\": 80,\r\n            \"textReview\": \"Good but can improve!\",\r\n            \"userId\": \"ADMIN\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/stations/createStations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"stations",
+						"createStations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
